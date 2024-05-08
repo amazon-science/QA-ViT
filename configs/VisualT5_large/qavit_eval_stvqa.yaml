@@ -1,0 +1,37 @@
+model_name: 'visual_t5'
+vit_type: 'qavit'
+integration_point: 'late'
+vit_model: 'openai/clip-vit-large-patch14-336'
+vit_layer: -1
+llm: 'google/flan-t5-large'
+hidden_translation_layers: 2
+instruction_embeddings: 'llm'
+instruct_via_encoder: True
+instruct_train_encoder: True
+is_mm_adaptor: True
+instruction_out_proj: True
+freeze_clip: True
+freeze_llm: False
+
+# Data
+dataset_train: 'multitask'
+dataset_eval: 'stvqa'
+
+# Optimization
+base_lr: 5e-5
+min_lr: 5e-7
+translation_lr_mul: 100
+warmup_iters: 1000
+scheduler: 'cosine'
+weight_decay: 0.
+n_epochs: 2
+batch_size_train: 8
+batch_size_test: 32
+
+# LoRa
+use_lora: True
+lora_r: 16
+lora_alpha: 32
+lora_dropout: 0.05
+lora_target_modules: ["q", "v", "shared"]
+lora_bias: "none"
