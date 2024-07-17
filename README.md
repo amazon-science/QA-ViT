@@ -75,9 +75,10 @@ ViT+T5 xl | 2 | 2 |       1.0       | bf16 |
 
  
 ### Training
-
-Training script and instructions will be available soon.
-
+After setting up DeepSpeed, run the following command to train QA-ViT:
+```bash
+accelerate launch run_train.py --config <config> --seed <seed>
+```
 ### Evaluation
 
 After setting up DeepSpeed, run the following command to evaluate a trained model:
