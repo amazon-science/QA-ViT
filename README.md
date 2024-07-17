@@ -68,10 +68,10 @@ accelerate config
 The `accelerate config` opens a dialog and should be set as follows:
 
 Model | DeepSpeed stage | Grad accumulation | Grad clipping | Dtype
---- | :---: | :---: | :---: | :---:
-ViT+T5 base | 2 | ❌ | ❌ | bf16 |
-ViT+T5 large | 2 | ❌ | ❌ | bf16 |
-ViT+T5 xl | 2 | 2 | ❌ | bf16 |
+--- | :---: | :---: |:-------------:| :---:
+ViT+T5 base | 2 | ❌ |      1.0      | bf16 |
+ViT+T5 large | 2 | ❌ |       1.0       | bf16 |
+ViT+T5 xl | 2 | 2 |       1.0       | bf16 |
 
  
 ### Training

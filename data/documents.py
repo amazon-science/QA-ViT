@@ -44,7 +44,7 @@ class DocVQA(Dataset):
 class InfoVQA(Dataset):
     def __init__(self, is_train=True):
         self.is_train = is_train
-        self.data_root = os.path.join('data/infovqa')
+        self.data_root = 'data/infovqa'
         self.annotation = json.load(open('data/infovqa/infographicsVQA_train_v1.0.json', 'r'))['data']
 
     def __len__(self):
@@ -59,11 +59,10 @@ class InfoVQA(Dataset):
             question_id = ann['question_id']
             return image, question, question, question_id, False
         else:
-            random_question = random.randint(0, len(ann['question']) - 1)
             question = pre_question(ann['question'])
             answer_weight = defaultdict(lambda: 0)
-            for answer in ann['answers'][random_question]:
-                answer_weight[answer] += 1 / len(ann['answers'][random_question])
+            for answer in ann['answers']:
+                answer_weight[answer] += 1 / len(ann['answers'])
 
             answers = list(answer_weight.keys())
             weights = list(answer_weight.values())

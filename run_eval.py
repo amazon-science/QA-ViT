@@ -1,5 +1,5 @@
 import argparse
-import ruamel.yaml as yaml
+from ruamel.yaml import YAML
 from pathlib import Path
 import datetime
 import torch
@@ -113,13 +113,15 @@ if __name__ == '__main__':
     parser.add_argument('--config', default='./configs/textvqa/pretrain_clip_flan_t5_base.yaml')
     parser.add_argument('--output_dir', default='output')
     parser.add_argument('--seed', default=3407, type=int)
-    parser.add_argument('--ckpt', type=str, required=True)
+    parser.add_argument('--ckpt', type=str, default=None)
     args = parser.parse_args()
     config_name = os.path.split(args.config)[-1].split('.')[0]
     config_dir = os.path.split(args.config)[-2].split('/')[-1]
     # Meaningful run name for tensorboard
     run_name = config_dir + '_' + config_name + '_' + datetime.datetime.now().strftime("%m_%d_%Y_%H:%M")
-    config = yaml.load(open(args.config, 'r'), Loader=yaml.Loader)
+
+    yaml = YAML(typ='rt')
+    config = yaml.load(open(args.config, 'r'))
 
     # Create a unique directory based on parameters
     args.output_dir = os.path.join(args.output_dir, config_dir, config_name, datetime.datetime.now().strftime(

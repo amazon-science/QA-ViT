@@ -5,6 +5,7 @@ from data.vqa import VQA, VizWiz
 from data.captioning import COCO, TextCAPs
 from data.stvqa import TextVQA, STVQA
 from collections import defaultdict
+import copy
 
 
 def vt5_collate_train_fn(batch, tokenizer, processor, **kwargs):
@@ -76,6 +77,3 @@ def get_datasets(config, eval=False):
     val_set = dataset_val(is_train=False)
 
     return train_set, val_set
-
-
-

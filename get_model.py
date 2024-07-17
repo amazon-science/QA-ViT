@@ -41,4 +41,4 @@ def create_model(config):
     if config['model_name'] == 'visual_t5':
         return get_visual_t5(config)
     else:
-        raise NotImplementedError("Currently only VisualT5 is implemented")
+        raise NotImplementedError("Currently only VisualT5 is supported")
